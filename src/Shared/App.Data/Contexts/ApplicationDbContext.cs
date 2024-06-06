@@ -1,4 +1,5 @@
 ﻿using App.Data.Entities;
+using App.Data.Entities.Customers;
 using App.Data.Entities.Orders;
 using System;
 using System.Collections.Generic;
@@ -28,8 +29,21 @@ namespace App.Data.Contexts
 
         public DbSet<Orderline> Orderlines { get; set; }
 
+        public DbSet<Address> Addresses { get; set; }
+
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<Customer>()
+            .HasMany<Address>(x => x.Addresses)
+            .WithOptional().
+            WillCascadeOnDelete(true);
+
+            modelBuilder.Entity<Order>()
+           .HasMany<Orderline>(x => x.Orderlines)
+           .WithRequired().
+           WillCascadeOnDelete(true);
+
+            base.OnModelCreating(modelBuilder);
         }
     }
 }

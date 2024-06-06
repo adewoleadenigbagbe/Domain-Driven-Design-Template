@@ -1,4 +1,5 @@
-﻿using App.Data.Interfaces;
+﻿using App.Data.Entities.Customers;
+using App.Data.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,6 +17,8 @@ namespace App.Data.Entities
         public string LastName { get; set; }
 
         public DateTime Dob { get; set; }
+
+        public virtual ICollection<Address> Addresses { get; set; }
 
         public DateTime? CreatedOn { get; set; }
 

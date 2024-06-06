@@ -52,6 +52,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Contexts\ApplicationDbContext.cs" />
+    <Compile Include="Entities\Customers\Address.cs" />
     <Compile Include="Entities\Customers\Customer.cs" />
     <Compile Include="Entities\Orders\Order.cs" />
     <Compile Include="Entities\Orders\Orderline.cs" />
