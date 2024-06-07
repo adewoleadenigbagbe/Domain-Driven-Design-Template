@@ -33,16 +33,6 @@ namespace App.Data.Contexts
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Customer>()
-            .HasMany<Address>(x => x.Addresses)
-            .WithOptional().
-            WillCascadeOnDelete(true);
-
-            modelBuilder.Entity<Order>()
-           .HasMany<Orderline>(x => x.Orderlines)
-           .WithRequired().
-           WillCascadeOnDelete(true);
-
             base.OnModelCreating(modelBuilder);
         }
     }

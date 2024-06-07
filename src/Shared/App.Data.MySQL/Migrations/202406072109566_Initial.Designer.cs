@@ -13,7 +13,7 @@ namespace App.Data.MySQL.Migrations
         
         string IMigrationMetadata.Id
         {
-            get { return "202406062308371_Initial"; }
+            get { return "202406072109566_Initial"; }
         }
         
         string IMigrationMetadata.Source

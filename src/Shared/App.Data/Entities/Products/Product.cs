@@ -1,6 +1,7 @@
 ﻿using App.Data.Interfaces;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -9,8 +10,10 @@ namespace App.Data.Entities
 {
     public class Product : IEntity, IAuditable, IArchivable
     {
-        public Guid Id { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        public Guid Id { get; set ; }
 
+        [MaxLength(100)]
+        [Required]
         public string Name { get; set; }
 
         public decimal Price { get; set; }
