@@ -51,7 +51,6 @@ namespace App.Infastructure.Queries.Products
 
             public async Task<Result> Handle(Request request, CancellationToken cancellationToken)
             {
-
                 var product = await _readAppContext.Products.FirstOrDefaultAsync();
 
                 if (product == null)

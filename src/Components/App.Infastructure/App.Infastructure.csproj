@@ -46,6 +46,7 @@
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Data.Entity" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -63,6 +64,10 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
+    <ProjectReference Include="..\..\Shared\App.Common\App.Common.csproj">
+      <Project>{8167a6a3-d0ee-403b-8621-f4030cb07cf2}</Project>
+      <Name>App.Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Shared\App.Data\App.Data.csproj">
       <Project>{9b7be41f-c855-4574-8625-1ac639fa7654}</Project>
       <Name>App.Data</Name>

@@ -1,6 +1,4 @@
-﻿using App.Data.Contexts;
-using MediatR;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
@@ -10,23 +8,28 @@ using System.Threading;
 using System.Threading.Tasks;
 
 
+using MediatR;
+
 using App.Infastructure.Models;
+using App.Common.Interfaces;
+using App.Common.Helpers;
+using App.Data.Contexts;
 
 
 namespace App.Infastructure.Queries.Products
 {
     public static class GetProducts
     {
-        public class Request : IRequest<Result>
+        public class Request : IRequest<Result>, IPagedRequest
         {
+            public int Page { get; set; } = 1;
 
+            public int PageLength { get; set; } = 100;
         }
 
-        public class Result
+        public class Result : PagedResult<ProductModel>
         {
             public HttpStatusCode StatusCode { get; set; }
-
-            public List<ProductModel> Products { get; set; }
         }
 
 
@@ -41,19 +44,18 @@ namespace App.Infastructure.Queries.Products
 
             public async Task<Result> Handle(Request request, CancellationToken cancellationToken)
             {
+                var result = new Result
+                {
+                    StatusCode = HttpStatusCode.OK
+                };
 
-                var products = await _readAppContext.Products.Select(p => new ProductModel
+                result = await _readAppContext.Products.Select(p => new ProductModel
                 {
                     Id = p.Id,
                     Name = p.Name,
                     Vat = p.Vat
-                }).ToListAsync();
+                }).ToPageResultAsync<ProductModel, Result>(request);
 
-                var result = new Result
-                {
-                    StatusCode = HttpStatusCode.OK,
-                    Products = products
-                };
 
                 return result;
             }
