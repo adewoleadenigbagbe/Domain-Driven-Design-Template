@@ -14,6 +14,7 @@ using App.Infastructure.Models;
 using App.Common.Interfaces;
 using App.Common.Helpers;
 using App.Data.Contexts;
+using App.Data.Entities.Customers;
 
 
 namespace App.Infastructure.Queries.Products
@@ -31,7 +32,6 @@ namespace App.Infastructure.Queries.Products
         {
             public HttpStatusCode StatusCode { get; set; }
         }
-
 
         public class Handler : IRequestHandler<Request, Result>
         {

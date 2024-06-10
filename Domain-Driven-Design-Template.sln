@@ -9,8 +9,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "App.Data.MySQL", "src\Share
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "App.Common", "src\Shared\App.Common\App.Common.csproj", "{8167A6A3-D0EE-403B-8621-F4030CB07CF2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "App.Api", "src\Services\App.Api\App.Api.csproj", "{06750C30-674B-4EF2-95DA-AF4233B0BB06}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "App.Business", "src\Shared\App.Business\App.Business.csproj", "{0ECAE847-81AE-4B42-83E2-A885A5CA3605}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "App.Infastructure", "src\Components\App.Infastructure\App.Infastructure.csproj", "{E9F2EA80-019B-4034-8D3C-03AAAEEBE1BE}"
@@ -41,10 +39,6 @@ Global
 		{8167A6A3-D0EE-403B-8621-F4030CB07CF2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8167A6A3-D0EE-403B-8621-F4030CB07CF2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8167A6A3-D0EE-403B-8621-F4030CB07CF2}.Release|Any CPU.Build.0 = Release|Any CPU
-		{06750C30-674B-4EF2-95DA-AF4233B0BB06}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{06750C30-674B-4EF2-95DA-AF4233B0BB06}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{06750C30-674B-4EF2-95DA-AF4233B0BB06}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{06750C30-674B-4EF2-95DA-AF4233B0BB06}.Release|Any CPU.Build.0 = Release|Any CPU
 		{0ECAE847-81AE-4B42-83E2-A885A5CA3605}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{0ECAE847-81AE-4B42-83E2-A885A5CA3605}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0ECAE847-81AE-4B42-83E2-A885A5CA3605}.Release|Any CPU.ActiveCfg = Release|Any CPU

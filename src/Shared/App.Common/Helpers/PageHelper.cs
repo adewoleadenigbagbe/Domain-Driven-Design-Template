@@ -46,6 +46,6 @@ namespace App.Common.Helpers
 
         public int TotalCount { get; set; }
 
-        public List<T> Items { get; set; }
+        public ICollection<T> Items { get; set; }
     }
 }
