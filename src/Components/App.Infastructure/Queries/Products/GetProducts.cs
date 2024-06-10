@@ -21,7 +21,7 @@ namespace App.Infastructure.Queries.Products
 {
     public static class GetProducts
     {
-        public class Request : IRequest<Result>, IPagedRequest
+        public class Query : IRequest<Result>, IPagedRequest
         {
             public int Page { get; set; } = 1;
 
@@ -33,7 +33,7 @@ namespace App.Infastructure.Queries.Products
             public HttpStatusCode StatusCode { get; set; }
         }
 
-        public class Handler : IRequestHandler<Request, Result>
+        public class Handler : IRequestHandler<Query, Result>
         {
             private readonly ReadAppContext _readAppContext;
 
@@ -42,7 +42,7 @@ namespace App.Infastructure.Queries.Products
                 _readAppContext = readAppContext;
             }
 
-            public async Task<Result> Handle(Request request, CancellationToken cancellationToken)
+            public async Task<Result> Handle(Query request, CancellationToken cancellationToken)
             {
                 var result = new Result
                 {

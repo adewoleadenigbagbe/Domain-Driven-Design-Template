@@ -6,10 +6,11 @@ using System.Net;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using System.ComponentModel.DataAnnotations;
 
 using MediatR;
+
 using App.Data.Entities;
-using System.ComponentModel.DataAnnotations;
 using App.Data.Helpers;
 using App.Infastructure.BasicResults;
 
@@ -17,7 +18,7 @@ namespace App.Infastructure.Commands
 {
     public static class CreateProduct
     {
-        public class Command : IRequest<Result>
+        public class Request : IRequest<Result>
         {
             [MaxLength(100)]
             [Required]
@@ -47,7 +48,7 @@ namespace App.Infastructure.Commands
         }
 
 
-        public class Handler : IRequestHandler<Command, Result>
+        public class Handler : IRequestHandler<Request, Result>
         {
             private readonly ReadWriteAppContext _readWriteAppContext;
 
@@ -56,7 +57,7 @@ namespace App.Infastructure.Commands
                 _readWriteAppContext = readWriteAppContext;
             }
 
-            public async Task<Result> Handle(Command request, CancellationToken cancellationToken)
+            public async Task<Result> Handle(Request request, CancellationToken cancellationToken)
             {
                 var id = SequentialGuid.Create();
 

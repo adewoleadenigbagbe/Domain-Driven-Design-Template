@@ -20,7 +20,7 @@ namespace App.Infastructure.Queries.Products
 {
     public static class GetProductById
     {
-        public class Request : IRequest<Result>
+        public class Query : IRequest<Result>
         {
             public string Id { get; set;}
         }
@@ -40,7 +40,7 @@ namespace App.Infastructure.Queries.Products
         }
 
 
-        public class Handler : IRequestHandler<Request, Result>
+        public class Handler : IRequestHandler<Query, Result>
         {
             private readonly ReadAppContext _readAppContext;
 
@@ -49,7 +49,7 @@ namespace App.Infastructure.Queries.Products
                 _readAppContext = readAppContext;
             }
 
-            public async Task<Result> Handle(Request request, CancellationToken cancellationToken)
+            public async Task<Result> Handle(Query request, CancellationToken cancellationToken)
             {
                 var product = await _readAppContext.Products.FirstOrDefaultAsync();
 
