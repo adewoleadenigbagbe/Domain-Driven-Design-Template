@@ -31,6 +31,15 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="MediatR, Version=6.0.0.0, Culture=neutral, PublicKeyToken=bb9a41a5e8aaa7e2, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\MediatR.6.0.0\lib\net461\MediatR.dll</HintPath>
+    </Reference>
+    <Reference Include="MediatR.Ninject, Version=3.2.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\MediatR.Ninject.3.2.0\lib\net461\MediatR.Ninject.dll</HintPath>
+    </Reference>
+    <Reference Include="Ninject, Version=3.3.6.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\Ninject.3.3.6\lib\net45\Ninject.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -41,7 +50,24 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Configuration\NinjectConfiguration.cs" />
+    <Compile Include="Ninject\Modules\DbConnectionModule.cs" />
+    <Compile Include="Ninject\Modules\MediatRModule.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Shared\App.Data.MySQL\App.Data.MySQL.csproj">
+      <Project>{3648d9dc-35eb-4de1-98c8-70f18a5cdb04}</Project>
+      <Name>App.Data.MySQL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Shared\App.Data\App.Data.csproj">
+      <Project>{9b7be41f-c855-4574-8625-1ac639fa7654}</Project>
+      <Name>App.Data</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
