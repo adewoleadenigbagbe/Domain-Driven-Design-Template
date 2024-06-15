@@ -31,6 +31,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Castle.Core, Version=4.0.0.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\Castle.Core.4.2.0\lib\net45\Castle.Core.dll</HintPath>
+    </Reference>
     <Reference Include="MediatR, Version=6.0.0.0, Culture=neutral, PublicKeyToken=bb9a41a5e8aaa7e2, processorArchitecture=MSIL">
       <HintPath>..\..\..\packages\MediatR.6.0.0\lib\net461\MediatR.dll</HintPath>
     </Reference>
@@ -40,7 +43,14 @@
     <Reference Include="Ninject, Version=3.3.6.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
       <HintPath>..\..\..\packages\Ninject.3.3.6\lib\net45\Ninject.dll</HintPath>
     </Reference>
+    <Reference Include="Ninject.Extensions.Conventions, Version=3.3.0.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\Ninject.Extensions.Conventions.3.3.0\lib\net45\Ninject.Extensions.Conventions.dll</HintPath>
+    </Reference>
+    <Reference Include="Ninject.Extensions.Factory, Version=3.3.2.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\Ninject.Extensions.Factory.3.3.2\lib\net45\Ninject.Extensions.Factory.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -57,9 +67,28 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
+    <None Include="ConnectionStrings.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\Components\App.Infastructure\App.Infastructure.csproj">
+      <Project>{e9f2ea80-019b-4034-8d3c-03aaaeebe1be}</Project>
+      <Name>App.Infastructure</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Services\App.Api\App.Api.csproj">
+      <Project>{4e24e6c0-6034-42b9-8566-1d8432ef99db}</Project>
+      <Name>App.Api</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Shared\App.Business\App.Business.csproj">
+      <Project>{0ecae847-81ae-4b42-83e2-a885a5ca3605}</Project>
+      <Name>App.Business</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Shared\App.Common\App.Common.csproj">
+      <Project>{8167a6a3-d0ee-403b-8621-f4030cb07cf2}</Project>
+      <Name>App.Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Shared\App.Data.MySQL\App.Data.MySQL.csproj">
       <Project>{3648d9dc-35eb-4de1-98c8-70f18a5cdb04}</Project>
       <Name>App.Data.MySQL</Name>
@@ -67,6 +96,10 @@
     <ProjectReference Include="..\..\Shared\App.Data\App.Data.csproj">
       <Project>{9b7be41f-c855-4574-8625-1ac639fa7654}</Project>
       <Name>App.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Tools\App.Export\App.Export.csproj">
+      <Project>{5aa47079-f5c5-461d-8279-7fc25bb90e83}</Project>
+      <Name>App.Export</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

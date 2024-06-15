@@ -19,10 +19,10 @@ namespace App.Host.SystemWeb
         public void Configuration(IAppBuilder app)
         {
             var kernel = new StandardKernel();
+            NinjectConfiguration.Configure(kernel);
+
             ConfigureWebApi(app,kernel);
             ConfigureStaticHosting(app);
-
-            NinjectConfiguration.Configure(kernel);
         }
 
         private void ConfigureWebApi(IAppBuilder app, IKernel kernel)
@@ -42,9 +42,9 @@ namespace App.Host.SystemWeb
         {
             var fileServerOptions = new FileServerOptions()
             {
-                RequestPath = new PathString(""),
+                RequestPath = new PathString("/index"),
                 EnableDirectoryBrowsing = true,
-                FileSystem = new PhysicalFileSystem(@".\Views"),
+                FileSystem = new PhysicalFileSystem(""),
                 StaticFileOptions = { ServeUnknownFileTypes = true }
             };
             app.UseFileServer(fileServerOptions);

@@ -16,13 +16,16 @@ using System.Threading.Tasks;
 
 using App.Infastructure.Models;
 
+using Newtonsoft.Json;
+
 namespace App.Infastructure.Queries.Products
 {
     public static class GetProductById
     {
         public class Query : IRequest<Result>
         {
-            public string Id { get; set;}
+            [JsonIgnore]
+            public Guid Id { get; set;}
         }
 
         public class Result : BasicResult
@@ -51,7 +54,7 @@ namespace App.Infastructure.Queries.Products
 
             public async Task<Result> Handle(Query request, CancellationToken cancellationToken)
             {
-                var product = await _readAppContext.Products.FirstOrDefaultAsync();
+                var product = await _readAppContext.Products.FirstOrDefaultAsync(x => x.Id == request.Id);
 
                 if (product == null)
                 {

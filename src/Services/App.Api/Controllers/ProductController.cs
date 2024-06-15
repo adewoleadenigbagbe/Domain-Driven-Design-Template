@@ -25,7 +25,7 @@ namespace App.Api.Controllers
 
         [HttpPost]
         [Route("")]
-        public async Task<IHttpActionResult> CreateProductAsync(CreateProduct.Request request)
+        public async Task<IHttpActionResult> CreateProductAsync([FromBody]CreateProduct.Request request)
         {
             var response = await _mediator.Send(request);
             return Ok(response);
@@ -33,16 +33,19 @@ namespace App.Api.Controllers
 
         [HttpGet]
         [Route("")]
-        public async Task<IHttpActionResult> GetProductsAsync(GetProducts.Query request)
+        public async Task<IHttpActionResult> GetProductsAsync([FromBody]GetProducts.Query request)
         {
+            request =  request ?? new GetProducts.Query();
             var response = await _mediator.Send(request);
             return Ok(response);
         }
 
         [HttpGet]
         [Route("{id}")]
-        public async Task<IHttpActionResult> GetProductById(GetProductById.Query request)
+        public async Task<IHttpActionResult> GetProductById([FromUri]Guid id, [FromBody]GetProductById.Query request)
         {
+            request = request ?? new GetProductById.Query();
+            request.Id = id;
             var response = await _mediator.Send(request);
             return Ok(response);
         }

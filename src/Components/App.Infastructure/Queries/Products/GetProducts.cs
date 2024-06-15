@@ -54,7 +54,7 @@ namespace App.Infastructure.Queries.Products
                     Id = p.Id,
                     Name = p.Name,
                     Vat = p.Vat
-                }).ToPageResultAsync<ProductModel, Result>(request);
+                }).OrderBy(x => x.Id).ToPageResultAsync<ProductModel, Result>(request);
 
 
                 return result;
