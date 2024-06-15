@@ -12,7 +12,7 @@ namespace App.Host.Configuration.Configuration
     {
         public static void Configure(IKernel kernel)
         {
-            kernel.Load(new DbConnectionModule(), new MediatRModule());
+            kernel.Load(new DbConnectionModule(), new MediatRModule(), new AutoMapperModule());
         }
     }
 }

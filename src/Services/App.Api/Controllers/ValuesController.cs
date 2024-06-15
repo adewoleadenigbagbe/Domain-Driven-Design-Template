@@ -5,7 +5,7 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 
-namespace App.Host.SystemWeb.Controllers
+namespace App.Api.Controllers
 {
     [RoutePrefix("api/values")]
     public class ValuesController : ApiController

@@ -17,6 +17,9 @@ using System.Threading.Tasks;
 using App.Infastructure.Models;
 
 using Newtonsoft.Json;
+using AutoMapper;
+using System.Runtime.InteropServices;
+
 
 namespace App.Infastructure.Queries.Products
 {
@@ -47,9 +50,12 @@ namespace App.Infastructure.Queries.Products
         {
             private readonly ReadAppContext _readAppContext;
 
-            public Handler(ReadAppContext readAppContext)
+            private readonly IMapper _mapper;
+
+            public Handler(ReadAppContext readAppContext, IMapper mapper)
             {
                 _readAppContext = readAppContext;
+                _mapper = mapper;
             }
 
             public async Task<Result> Handle(Query request, CancellationToken cancellationToken)
@@ -61,14 +67,7 @@ namespace App.Infastructure.Queries.Products
                     return new Result(HttpStatusCode.NotFound,"Product not found");
                 }
 
-                //use AutoMapper Lib
-                var productModel = new ProductModel
-                {
-                    Id = product.Id,
-                    Name = product.Name,
-                    Vat = product.Vat,
-                };
-
+                var productModel = _mapper.Map<ProductModel>(product);
 
                 return new Result(productModel);
             }

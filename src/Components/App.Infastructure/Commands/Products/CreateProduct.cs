@@ -60,16 +60,23 @@ namespace App.Infastructure.Commands
             public async Task<Result> Handle(Request request, CancellationToken cancellationToken)
             {
                 var id = SequentialGuid.Create();
+                var now = DateTime.Now;
 
                 var product = new Product
                 {
                     Id = id,
                     Name = request.Name,
                     Vat = request.Vat,
-                    Category = request.Category
+                    Category = request.Category,
+                    Price = request.Price,
+                    IsDeprecated = false,
+                    CreatedOn = now,
+                    ModifiedOn = now
                 };
 
                 _readWriteAppContext.Products.Add(product);
+
+                await _readWriteAppContext.SaveChangesAsync();
 
                 return new Result(id);
             }
