@@ -54,9 +54,9 @@ Queries to get and read state or object. Handlers as the functions to execute an
 * **App.Buisness** - Contains core business logic for the application
 
 * **App.Host.Configuration** - contains configuration for application hosting, Service Registrations, managing connection strings and app settings. 
-        1. Service Registrations - We use Ninject in this project for service Registration for other project.
-        2. Third Party Library Configurations- AutoMapper, Refit, Mediatr.
-        3. ConnectionStrings - Shared.ConnectionStrings, Shared.AppSettings
+    * Service Registrations - We use Ninject in this project for service Registration for other project.
+    * Third Party Library Configurations- AutoMapper, Refit, Mediatr.
+    * ConnectionStrings - Shared.ConnectionStrings, Shared.AppSettings
 
 * **App.Host.SystemWeb** - A Website to host you endpoints, reference App.API
 
