@@ -9,38 +9,38 @@ A Standard domain driven design solution should start with a naming convention f
 
 Project are arranged in grouped folders based on their functionality, for the root i have the src folder and the tests,src containing application code functionality and tests containing the unit test for the src project. Under the src folder, there are different sub folders which are 
 
-Components (Application code functionality, third party integrations)
-Hosts (Host for application as well as configuration)
-Services (API services, Grpc services)
-Shared (Common functionality referenced by other project in the solution)
-Tools (Export service like Excel , csv)
+* Components (Application code functionality, third party integrations)
+* Hosts (Host for application as well as configuration)
+* Services (API services, Grpc services)
+* Shared (Common functionality referenced by other project in the solution)
+* Tools (Export service like Excel , csv)
 
 
-Projects in this solution
+Projects in this solution are the below
 
-Components
-App.Infastructure 
+### Components
+* App.Infastructure 
 
-Hosts
-App.Host.Configuration
-App.Host.SelfHost
-App.Host.SystemWeb
+### Hosts
+* App.Host.Configuration
+* App.Host.SelfHost
+* App.Host.SystemWeb
 
-Services
-App.Api
+### Services
+* App.Api
 
-Shared
-App.Buisness
-App.Common
-App.Data
-App.Data.MySQL
-
-
-Tools
-App.Export
+### Shared
+* App.Common
+* App.Data
+* App.Data.MySQL
 
 
-The App.Infastructure uses the CQRS pattern using Commands, Queries And Handlers , here we use a CQRS Library called Mediatr. 
+### Tools
+* App.Export
+
+### Explanation on the each Projects
+
+* The App.Infastructure uses the CQRS pattern using Commands, Queries And Handlers , here we use a CQRS Library called Mediatr. 
 Commands for state creation and alteration. 
 Queries to get and read state or object.
 Handlers as the functions to execute an actions
@@ -48,33 +48,28 @@ Handlers as the functions to execute an actions
 Features/Entities are grouped in either the Commands or Query Folder, for example in the project , under the Commands folders we have a Product folder that keeps files related to product, CreateProduct, UpdateProduct, this is a correct pattern to arrange or grouped entities/features
 
 
-The App.API contains conntrollers for endpoint calls, this should not include any logic or any form of validations , it should take request from the client , call the cqrs handlers and return response to the client. This references the App.Infastructure
+* The App.API contains conntrollers for endpoint calls, this should not include any logic or any form of validations , it should take request from the client , call the cqrs handlers and return response to the client. This references the App.Infastructure
 
 
-App.Data contains entities that can be in a persistent storage, aka database entities and related entities function, it should contains database contexts used for object query or write. In this project we have ReadContext and WriteContext
+* App.Data contains entities that can be in a persistent storage, aka database entities and related entities function, it should contains database contexts used for object query or write. In this project we have ReadContext and WriteContext
 
-App.Data.MySQL - for this project, entities are persisted in MySQL , this manages connection to MySQL database as well related MySQl Migrations, it is a good practice to have migration in this folder. If you have other Database provider you need to use, should create a different project for the provider, for ex: App.Data.SqlServer. it also contains MySQl Read and Write context which inherit from tha App.Data read/Write Contexts
+* App.Data.MySQL - for this project, entities are persisted in MySQL , this manages connection to MySQL database as well related MySQl Migrations, it is a good practice to have migration in this folder. If you have other Database provider you need to use, should create a different project for the provider, for ex: App.Data.SqlServer. it also contains MySQl Read and Write context which inherit from tha App.Data read/Write Contexts
 
+* App.Common - Groups related models, helper methods that are referenced in other part of the projects
 
-App.Common - Groups related models, helper methods that are referenced in other part of the projects
+* App.Buisness - Contains core business logic for the application
 
-App.Buisness - Contains core business logic for the application
-
-
-App.Host.Configuration 
+* App.Host.Configuration 
 Contains configuration for application hosting , Service Registraion , managing connection strings and app settings
 Service Registrations - We use Ninject in this project for service Registration for other project
 Third Party Library Configurations- AutoMapper, Refit, Mediatr
 ConnectionStrings - Shared.ConnectionStrings, Shared.AppSettings
 
+* App.Host.SystemWeb - A Website to host you endpoints , reference App.API
 
-App.Host.SystemWeb - A Website to host you endpoints , reference App.API
+* App.Host.SelfHost - If you have application that need to be self hosted in its own process , a project should be used for that, in this solutin we use OWIN
 
-
-App.Host.SelfHost - If you have application that need to be self hosted in its own process , a project should be used for that, in this solutin we use OWIN
-
-
-App.Export- Contains services for excel and csv
+* App.Export- Contains services for excel and csv*
 
 
 
