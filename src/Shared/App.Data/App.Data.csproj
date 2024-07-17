@@ -51,7 +51,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Attributes\AuditableAttribute.cs" />
+    <Compile Include="Attributes\AuditableCreatedOnAttribute.cs" />
+    <Compile Include="Attributes\AuditableModifiedOnAttribute.cs" />
     <Compile Include="Attributes\PreSaveActionAttribute.cs" />
     <Compile Include="Attributes\SequentialGuidAttribute.cs" />
     <Compile Include="Contexts\ApplicationDbContext.cs" />
@@ -62,6 +63,7 @@
     <Compile Include="Entities\Orders\Order.cs" />
     <Compile Include="Entities\Orders\Orderline.cs" />
     <Compile Include="Entities\Products\Product.cs" />
+    <Compile Include="Helpers\PreSaveActionHelper.cs" />
     <Compile Include="Helpers\SequentialGuid.cs" />
     <Compile Include="Interfaces\IArchivable.cs" />
     <Compile Include="Interfaces\IAuditable.cs" />

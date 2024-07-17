@@ -9,10 +9,10 @@ namespace App.Data.Interfaces
 {
     public interface IAuditable
     {
-        [Auditable]
+        [AuditableCreatedOn]
         DateTime? CreatedOn { get; set; }
 
-        [Auditable]
+        [AuditableModifiedOn]
         DateTime? ModifiedOn { get; set; }
     }
 }

@@ -12,7 +12,14 @@ namespace App.Data.Attributes
 {
     public class SequentialGuidAttribute : PreSaveActionAttribute
     {
-        public override void PerformAction(DbEntityEntry entry, string name)
+        public override bool CanPerformAction(DbEntityEntry entry, string name)
+        {
+            var propertyType = entry.Property(name).GetType();
+
+            return propertyType == typeof(Guid);
+        }
+
+        public override object PerformAction(DbEntityEntry entry, string name)
         {
             if ( entry.State != EntityState.Added)
             {
@@ -26,7 +33,7 @@ namespace App.Data.Attributes
                 guid = SequentialGuid.Create();
             }
 
-            dbEntryProperty.CurrentValue = guid;
+           return guid;
         }
     }
 }

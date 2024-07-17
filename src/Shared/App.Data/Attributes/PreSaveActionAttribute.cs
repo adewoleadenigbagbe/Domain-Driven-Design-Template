@@ -11,6 +11,8 @@ namespace App.Data.Attributes
     [AttributeUsage(AttributeTargets.Property | AttributeTargets.Field)]
     public abstract class PreSaveActionAttribute : Attribute
     {
-        public abstract void PerformAction(DbEntityEntry entry, string name);
+        public abstract bool CanPerformAction(DbEntityEntry entry, string name);
+
+        public abstract object PerformAction(DbEntityEntry entry, string name);
     }
 }

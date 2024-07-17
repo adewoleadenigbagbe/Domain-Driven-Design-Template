@@ -1,5 +1,10 @@
 ﻿using App.Data.Attributes;
+using App.Data.Helpers;
+using System;
+using System.Collections.Concurrent;
+using System.Collections.Generic;
 using System.Data.Common;
+using System.Linq;
 using System.Reflection;
 using System.Threading;
 using System.Threading.Tasks;
@@ -37,26 +42,9 @@ namespace App.Data.Contexts
         private void PreSaveChanges()
         {
            if (ChangeTracker.HasChanges())
-            {
-                foreach(var entry in ChangeTracker.Entries())
-                {
-                    entry.State =  System.Data.Entity.EntityState.Modified;
-                    var propertyInfos = entry.Entity.GetType().GetProperties();
-                    foreach (var propertyInfo in propertyInfos)
-                    {
-                        var customAttributes = propertyInfo.GetCustomAttributes();
-                        foreach (var customAttribute in customAttributes)
-                        {
-                            if (customAttribute is PreSaveActionAttribute)
-                            {
-                                var presaveActionAttribute = customAttribute as PreSaveActionAttribute;
-                                presaveActionAttribute.PerformAction(entry, propertyInfo.Name);
-                            }
-                        }
-                    }
-                }
-            }
+           {
+                PreSaveActionHelper.AddEntityType(ChangeTracker.Entries());
+           }
         }
-
     }
 }
