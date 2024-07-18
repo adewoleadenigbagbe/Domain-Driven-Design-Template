@@ -11,19 +11,16 @@ namespace App.Data.Attributes
 {
     public class AuditableCreatedOnAttribute : PreSaveActionAttribute
     {
-        public override bool CanPerformAction(DbEntityEntry entry, string name)
+        public override bool CanPerformAction(DbEntityEntry entry, Type propertyType)
         {
-            var propertyType = entry.Property(name).GetType();
-
             return propertyType == typeof(DateTime?);
         }
 
-        public override object PerformAction(DbEntityEntry entry, string name)
+        public override object PerformAction(DbEntityEntry entry, object originalValue, object currentValue)
         {
             if (entry.State == EntityState.Added)
             {
-                var dbEntryProperty = entry.Property(name);
-                var date = (DateTime?)dbEntryProperty.OriginalValue;
+                var date = (DateTime?)originalValue;
                 return (!date.HasValue || date == default) ? (DateTime?)DateTime.UtcNow : date;
             }
 

@@ -10,17 +10,14 @@ namespace App.Data.Attributes
 {
     public class AuditableModifiedOnAttribute : PreSaveActionAttribute
     {
-        public override bool CanPerformAction(DbEntityEntry entry, string name)
+        public override bool CanPerformAction(DbEntityEntry entry, Type propertyType)
         {
-            var propertyType = entry.Property(name).GetType();
-
             return propertyType == typeof(DateTime?);
         }
 
-        public override object PerformAction(DbEntityEntry entry, string name)
+        public override object PerformAction(DbEntityEntry entry, object originalValue, object currentValue)
         {
-            var dbEntryProperty = entry.Property(name);
-            var oldVal = (DateTime?)dbEntryProperty.OriginalValue;
+            var oldVal = (DateTime?)originalValue;
 
 
             if (entry.State == EntityState.Added)
@@ -30,7 +27,7 @@ namespace App.Data.Attributes
 
             if (entry.State == EntityState.Modified)
             {
-                var currentVal = (DateTime?)dbEntryProperty.CurrentValue;
+                var currentVal = (DateTime?)currentValue;
 
                 return (oldVal == currentVal || currentVal == default) ? DateTime.UtcNow as DateTime? : currentVal;
             }

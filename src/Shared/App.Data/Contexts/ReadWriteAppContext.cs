@@ -43,8 +43,11 @@ namespace App.Data.Contexts
         {
            if (ChangeTracker.HasChanges())
            {
-                PreSaveActionHelper.AddEntityType(ChangeTracker.Entries());
-           }
+                foreach (var entityEntry in ChangeTracker.Entries())
+                {
+                    PreSaveActionHelper.ApplyChanges(entityEntry);
+                }
+            }
         }
     }
 }

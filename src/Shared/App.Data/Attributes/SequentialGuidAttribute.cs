@@ -12,22 +12,19 @@ namespace App.Data.Attributes
 {
     public class SequentialGuidAttribute : PreSaveActionAttribute
     {
-        public override bool CanPerformAction(DbEntityEntry entry, string name)
+        public override bool CanPerformAction(DbEntityEntry entry, Type propertyType)
         {
-            var propertyType = entry.Property(name).GetType();
-
             return propertyType == typeof(Guid);
         }
 
-        public override object PerformAction(DbEntityEntry entry, string name)
+        public override object PerformAction(DbEntityEntry entry, object originalValue, object currentValue)
         {
             if ( entry.State != EntityState.Added)
             {
                 throw new InvalidOperationException("Entity already existed and state cannnot be changed");
             }
 
-            var dbEntryProperty = entry.Property(name);
-            var guid = (Guid)dbEntryProperty.CurrentValue;
+            var guid = (Guid)currentValue;
             if (guid == default)
             {
                 guid = SequentialGuid.Create();
