@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Web.Http;
+using System.Web.Http.ExceptionHandling;
 
 namespace App.Api
 {
@@ -15,6 +16,7 @@ namespace App.Api
         {
             configuration.MapHttpAttributeRoutes();
 
+            configuration.Services.Add(typeof(IExceptionLogger), typeof(NLogExceptionLogger));
             configuration.IncludeErrorDetailPolicy = IncludeErrorDetailPolicy.Always;
             configuration.Formatters.JsonFormatter.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
             configuration.Formatters.JsonFormatter.SerializerSettings.Converters.Add(new TrimConverter());
