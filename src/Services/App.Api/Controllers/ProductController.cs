@@ -10,6 +10,7 @@ using MediatR;
 
 using App.Infastructure.Commands;
 using App.Infastructure.Queries.Products;
+using App.Api.Filters;
 
 
 namespace App.Api.Controllers
@@ -25,6 +26,7 @@ namespace App.Api.Controllers
 
         [HttpPost]
         [Route("")]
+        [ValidationModel]
         public async Task<IHttpActionResult> CreateProductAsync([FromBody]CreateProduct.Request request)
         {
             var response = await _mediator.Send(request);

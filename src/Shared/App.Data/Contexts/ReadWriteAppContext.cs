@@ -23,19 +23,19 @@ namespace App.Data.Contexts
 
         public override async Task<int> SaveChangesAsync()
         {
-            PreSaveChanges();
+            //PreSaveChanges();
             return await base.SaveChangesAsync();
         }
 
         public override int SaveChanges()
         {
-            PreSaveChanges();
+            //PreSaveChanges();
             return base.SaveChanges();
         }
 
         public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken)
         {
-            PreSaveChanges();
+            //PreSaveChanges();
             return await base.SaveChangesAsync(cancellationToken);
         }
 

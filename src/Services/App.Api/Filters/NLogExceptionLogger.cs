@@ -13,6 +13,7 @@ namespace App.Api.Filters
     public class NLogExceptionLogger : ExceptionLogger
     {
         private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
+
         public override void Log(ExceptionLoggerContext context)
         {
             LogError(context);

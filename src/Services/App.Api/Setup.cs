@@ -1,4 +1,5 @@
 ﻿using App.Api.Converters;
+using App.Api.Filters;
 using Newtonsoft.Json.Serialization;
 using System;
 using System.Collections.Generic;
@@ -16,7 +17,7 @@ namespace App.Api
         {
             configuration.MapHttpAttributeRoutes();
 
-            configuration.Services.Add(typeof(IExceptionLogger), typeof(NLogExceptionLogger));
+            configuration.Services.Add(typeof(IExceptionLogger), new NLogExceptionLogger());
             configuration.IncludeErrorDetailPolicy = IncludeErrorDetailPolicy.Always;
             configuration.Formatters.JsonFormatter.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
             configuration.Formatters.JsonFormatter.SerializerSettings.Converters.Add(new TrimConverter());
